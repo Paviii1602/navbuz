@@ -1,0 +1,166 @@
+:root {
+  --bg:        #f5f7fa;
+  --bg2:       #ffffff;
+  --bg3:       #eef1f6;
+  --text:      #1d3e5c;
+  --text2:     #374151;
+  --text3:     #94a3b8;
+  --primary:   #15a8cd;
+  --primary2:  #036ea7;
+  --primary-l: #dbeafe;
+  --success:   #16a34a;
+  --success-l: #dcfce7;
+  --warning:   #d97706;
+  --warning-l: #fef3c7;
+  --danger:    #dc2626;
+  --danger-l:  #fee2e2;
+  --border:    #e5e7eb;
+  --radius:    14px;
+  --radius-sm: 8px;
+  --header-grad: linear-gradient(135deg, #15a8cd 0%, #036ea7 100%);
+  --shadow:    0 2px 12px rgba(21,168,205,0.10);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+[data-theme="dark"] {
+  --bg:        #0f172a;
+  --bg2:       #1e293b;
+  --bg3:       #334155;
+  --text:      #f1f5f9;
+  --text2:     #cbd5e1;
+  --text3:     #94a3b8;
+  --primary:   #15a8cd;
+  --primary2:  #2b87d8;
+  --primary-l: #1e3a5f;
+  --success-l: #14532d;
+  --warning-l: #78350f;
+  --danger-l:  #7f1d1d;
+  --border:    #334155;
+  --shadow:    0 1px 4px rgba(0,0,0,0.3);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root { height: 100%; background: var(--bg); color: var(--text); }
+
+/* ── Splash ─────────────────────────────────────────────────────────────── */
+.splash {
+  position: fixed; inset: 0; z-index: 9999;
+  background: linear-gradient(170deg, #18b4d8 0%, #15a8cd 30%, #0b85a8 65%, #036ea7 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 22px;
+  transition: opacity 0.6s ease, visibility 0.6s;
+}
+.splash.fade-out { opacity: 0; visibility: hidden; }
+.splash-card {
+  width: 90px; height: 90px; background: rgba(255,255,255,0.15);
+  border-radius: 24px; display: flex; align-items: center; justify-content: center;
+  font-size: 48px; animation: bounce 1.5s ease infinite;
+  backdrop-filter: blur(10px); border: 1.5px solid rgba(255,255,255,0.25);
+}
+@keyframes bounce {
+  0%,100% { transform: translateY(0);     }
+  50%     { transform: translateY(-12px); }
+}
+.splash h1 { color: #fff; font-size: 36px; font-weight: 800; letter-spacing: -0.5px; }
+.splash p  { color: rgba(255,255,255,0.75); font-size: 15px; }
+
+/* ── Page shell ─────────────────────────────────────────────────────────── */
+.page   { display: flex; flex-direction: column; height: 100dvh; max-width: 480px; margin: 0 auto; background: var(--bg); overflow: hidden; position: relative; }
+.scroll { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+.app-header  { display: flex; align-items: center; justify-content: space-between; padding: 16px 28px; background: var(--primary) ; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50; flex-shrink: 0; }
+.header-logo { display: flex; align-items: center; gap: 8px; }
+.header-logo-icon { font-size: 26px; }
+.header-logo h1 { color: #fff; font-size: 22px; font-weight: 800; align-items: center; position :absolute}
+.logo        { font-size: 22px; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+.profile-btn { width: 36px; height: 36px; border-radius: 50%; background: var(--primary-2); color: var(--primary); border: none; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+/* ── Bottom tabs ────────────────────────────────────────────────────────── */
+.bottom-tabs { display: flex; background: var(--bg2); border-top: 1px solid var(--border); flex-shrink: 0; }
+.tab        { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 10px 4px 8px; border: none; background: transparent; color: var(--text3); font-size: 10px; font-weight: 500; cursor: pointer; transition: color 0.2s; }
+.tab.active { color: var(--primary); }
+.tab-icon   { font-size: 20px; }
+
+/* ── Cards ──────────────────────────────────────────────────────────────── */
+.card { background: var(--bg2); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); }
+
+/* ── Inputs ─────────────────────────────────────────────────────────────── */
+.input       { width: 100%; padding: 12px 14px; border-radius: var(--radius-sm); border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 15px; outline: none; transition: border-color 0.2s; -webkit-appearance: none; }
+.input:focus { border-color: var(--primary); }
+
+/* ── Buttons ────────────────────────────────────────────────────────────── */
+.btn           { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 20px; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; border: none; width: 100%; transition: opacity 0.2s, transform 0.1s; }
+.btn:active    { transform: scale(0.98); }
+.btn:disabled  { opacity: 0.5; cursor: not-allowed; }
+.btn-primary   { background: var(--primary); color: #fff; }
+.btn-success   { background: #16a34a;        color: #fff; }
+.btn-danger    { background: var(--danger);  color: #fff; }
+.btn-secondary { background: var(--bg3); color: var(--text); border: 1px solid var(--border); }
+
+/* ── Badges ─────────────────────────────────────────────────────────────── */
+.badge        { display: inline-block; padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.badge-blue   { background: var(--primary-l); color: var(--primary); }
+.badge-green  { background: var(--success-l); color: var(--success); }
+.badge-orange { background: var(--warning-l); color: var(--warning); }
+.badge-red    { background: var(--danger-l);  color: var(--danger);  }
+
+/* ── Live dot ───────────────────────────────────────────────────────────── */
+.live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.6; transform:scale(1.4); } }
+
+/* ── Timeline ───────────────────────────────────────────────────────────── */
+.timeline        { padding: 8px 16px; }
+.tl-row          { display: flex; gap: 12px; align-items: flex-start; padding: 6px 0; }
+.tl-spine        { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; padding-top: 3px; }
+.tl-dot          { width: 12px; height: 12px; border-radius: 50%; border: 2px solid transparent; flex-shrink: 0; }
+.tl-dot.passed   { background: var(--text3);  border-color: var(--text3);  }
+.tl-dot.next     { background: var(--primary); border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-l); }
+.tl-dot.upcoming { background: transparent;   border-color: var(--border);  }
+.tl-dot.start    { background: var(--success); border-color: var(--success); }
+.tl-dot.end      { background: var(--danger);  border-color: var(--danger);  }
+.tl-line         { width: 2px; flex: 1; min-height: 20px; background: var(--border); margin: 3px 0; }
+.tl-line.passed  { background: var(--text3); }
+.tl-content      { flex: 1; padding-bottom: 6px; }
+.stop-name        { font-size: 14px; color: var(--text); }
+.stop-name.passed { color: var(--text3); text-decoration: line-through; }
+.stop-name.next   { font-weight: 600; color: var(--primary); }
+
+/* ── Schedule chips ─────────────────────────────────────────────────────── */
+.sched-chip        { display: inline-block; padding: 4px 9px; border-radius: 6px; font-size: 12px; font-weight: 500; margin: 3px; }
+.sched-chip.past   { background: var(--bg3);       color: var(--text3);  text-decoration: line-through; }
+.sched-chip.next   { background: var(--success-l); color: var(--success); border: 1.5px solid var(--success); font-weight: 700; }
+.sched-chip.future { background: var(--primary-l); color: var(--primary); }
+
+/* ── Trip bar ───────────────────────────────────────────────────────────── */
+.trip-bar       { background: var(--bg2); color: #ffffff;  margin: 8px 16px; border-radius: var(--card-radius); padding: 14px; flex-shrink: 0; box-shadow: var(--shadow) }
+.trip-stat      { text-align: center; }
+.trip-stat .val { font-size: 18px; font-weight: 700; color: #167995; }
+.trip-stat .lbl { font-size: 12px; color: rgba(111, 106, 106, 0.7); margin-top: 2px; }
+
+/* ── GPS banner ─────────────────────────────────────────────────────────── */
+.gps-banner         { margin: 12px 16px; padding: 12px 14px; border-radius: 10px; font-size: 13px; line-height: 1.5; }
+.gps-banner.denied  { background: var(--danger-l);  color: var(--danger);  border: 1px solid var(--danger);  }
+.gps-banner.warning { background: var(--warning-l); color: var(--warning); border: 1px solid var(--warning); }
+.gps-banner.granted { background: var(--success-l); color: var(--success); border: 1px solid var(--success); }
+
+/* ── Drawer ──────────────────────────────────────────────────────────────────
+   FIXED: z-index raised to 2000/2001 so drawer always appears above the
+   Leaflet map (Leaflet internal layers use z-index up to ~700).
+   Also wrap every <MapContainer> in:
+     <div style={{ position:'relative', zIndex:0 }}>
+   to contain Leaflet inside a stacking context.
+────────────────────────────────────────────────────────────────────────── */
+.drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; }
+.drawer         { position: fixed; top: 0; right: 0; bottom: 0; width: 80%; max-width: 320px; background: var(--bg2); z-index: 2001; display: flex; flex-direction: column; padding: 28px 20px; gap: 0; overflow-y: auto; }
+.drawer-item    { display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--border); background: none; border-left: none; border-right: none; border-top: none; color: var(--text); font-size: 15px; cursor: pointer; width: 100%; text-align: left; }
+
+/* ── Misc ───────────────────────────────────────────────────────────────── */
+.section-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+.spinner       { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin    { to { transform: rotate(360deg); } }
+@keyframes slideUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+
+/* ── Map ─────────────────────────────────────────────────────────────────── */
+.leaflet-container { border-radius: var(--radius); }
